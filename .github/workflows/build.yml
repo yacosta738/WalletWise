@@ -17,6 +17,12 @@ on:
         type: string
 
 jobs:
+  Check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate Gradle wrapper
+        uses: gradle/actions/wrapper-validation@v4
+        
   Android:
     if: ${{ inputs.shouldRunKmp == 'true' || inputs.shouldRunAndroid == 'true' }}
     runs-on: ubuntu-latest
