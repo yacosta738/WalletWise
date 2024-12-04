@@ -1,4 +1,4 @@
-# KMM Template (Android + iOS)
+# Wallet Wise (Android + iOS)
 
 ## Introduction
 
@@ -76,13 +76,13 @@ These functions and/or classes are defined in the module
 [commonMain], but are implemented on each platform, marking their implementation with the keyword **current**. TO
 Keep in mind that, to carry out the implementation, it is required
 of a particular nomenclature, for example, if in [commonMain] we have the file (defined by its
-package) [dev.afalabarce.template.kmm.data.datasources.core.db.DriverFactory.kt]
+package) [com.astrum.wallet.wise.data.datasources.core.db.DriverFactory.kt]
 On the rest of the platforms, we must define a file that will be the one in which we will implement the class (
 or expect function) that we require:
 
-- **[dev.afalabarce.template.kmm.data.datasources.core.db.DriverFactory.android.kt]**, the implementation of
+- **[com.astrum.wallet.wise.data.datasources.core.db.DriverFactory.android.kt]**, the implementation of
   the class/functions using android's own elements.
-- **[dev.afalabarce.template.kmm.data.datasources.core.db.DriverFactory.ios.kt]**, the implementation of the
+- **[com.astrum.wallet.wise.data.datasources.core.db.DriverFactory.ios.kt]**, the implementation of the
   class/functions using the Kotlin - Swift bridge provided by KMP.
 
 Let's look at an example, precisely with the file proposed as an example:
@@ -216,17 +216,17 @@ Let's look at each of these files that we have just presented in detail:
 Project Initializer Task Help
 -------------------------------
 This task can relocate packages and folders from source package to destination package
-- appName, New project Application Name (By Default KMM Template)
+- appName, New project Application Name (By Default Wallet Wise)
 - destinationPath, Destination path for the new project(sibling to root project dir), can't be empty, can't exists, and not equals to current template project dir
-- sourcePackage, Source package from template, by default dev.afalabarce.template.kmm
+- sourcePackage, Source package from template, by default com.astrum.wallet.wise
 - destinationPackage, Destination package for the template, can't be empty, and not equals to sourcePackage
 
 Usage:
 ./gradlew -q initializeKmmProject \
         --appName="Your Awesome App Name" \
         --destinationPath="your-new-project-root" \
-        --sourcePackage="dev.afalabarce.template.kmm" \
-        --destinationPackage="io.github.afalabarce.awesomeapp"
+        --sourcePackage="com.astrum.wallet.wise" \
+        --destinationPackage="com.astrum.wallet.wise"
 -------------------------------
 ERROR: Destination path can not be empty
 ERROR: Deploy package can not be empty
@@ -257,12 +257,12 @@ in the MainActivity file it makes the relevant call to the composable of the app
 **:presentation:ui**:
 
 ```kotlin
-package io.afalabarce.template.kmm
+package com.astrum.wallet.wise
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import io.afalabarce.template.kmm.presentation.ui.App
+import com.astrum.wallet.wise.presentation.ui.App
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -429,7 +429,7 @@ This module defines one of the most important functionalities of the entire proj
 relatively simple way the entire process of providing dependencies throughout the project (hence this module
 be a direct dependency on the rest of the modules of the project).
 
-In the package [io.afalabarce.template.kmm.core.common.di] the interface **KoinModuleLoader** is defined, which
+In the package [com.astrum.wallet.wise.core.common.di] the interface **KoinModuleLoader** is defined, which
 exposes a read-only property called **modules**, which is nothing more than a list of koin modules.
 We will implement this interface in each module that requires dependency injection, for example,
 [data -> datasources-core], [data -> repository], [domain -> usecases] and [presesntation -> viewmodels].
@@ -501,9 +501,9 @@ This module is responsible for centralizing the different dependency trees of ea
 a single tree that will allow us to easily generate dependencies, also minimizing possible
 errors, because each module is limited.
 
-To do this, only an object called [io.afalabarce.template.kmm.core.di.CoreDependencyInjection] is generated.
+To do this, only an object called [com.astrum.wallet.wise.core.di.CoreDependencyInjection] is generated.
 which provides, like the rest of the dependency objects, the implementation of the
-interface [io.afalabarce.template.kmm.core.common.di.KoinModuleLoader].
+interface [com.astrum.wallet.wise.core.common.di.KoinModuleLoader].
 
 Unlike what happens with the dependency injection of other modules, in this it is not necessary to add anything (except
 So, let's modify the architecture and add
@@ -689,7 +689,7 @@ asynchronous. For KMM, except for the initialization of the object based on the 
 Saving the specific implementations for initialization, an example of data management is shown below.
 preferences with JetpackDatastore:
 
-- Interface defined in [io.afalabarce.template.kmm.data.features.preferences]:
+- Interface defined in [com.astrum.wallet.wise.data.features.preferences]:
 
 ```kotlin
 interface AppPreferences {
@@ -698,7 +698,7 @@ interface AppPreferences {
 }
 ```
 
-- Interface implementation, in [io.afalabarce.template.kmm.data.core.features.preferences]
+- Interface implementation, in [com.astrum.wallet.wise.data.core.features.preferences]
 
 ```kotlin
 class AppPreferencesImpl(
@@ -721,7 +721,7 @@ class AppPreferencesImpl(
 ```
 
 All the creation of preferences is managed from each platform, thanks to the method defined in
-[io.afalabarce.template.kmm.data.datasources.core.features.preferences.DataStoreInstance.kt], in conjunction
+[com.astrum.wallet.wise.data.datasources.core.features.preferences.DataStoreInstance.kt], in conjunction
 with the particular dependency injection of each platform (see the Koin code example in the section
 Ktor, the defined expected fun and its corresponding actual fun).
 
@@ -1041,8 +1041,3 @@ of Android apps are the following:
   unnecessary to use alternatives such as moko-resources or free ones. For more information you can visit the
   [Project website](https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-images-resources.html) (it is at
   experimental phase, but it works quite well at this point).
-
-# This is all, THANK YOU for reading the whole thing ;)
-
-And if you think that I have done a good job and I deserve a coffee (a little star) and you can do
-a [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/R5R4NB8VV)

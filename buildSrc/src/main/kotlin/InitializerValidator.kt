@@ -33,8 +33,8 @@ class InitializerValidator(
                     "./gradlew -q initializeKmmProject \\\n" +
                             "\t--appName=\"Your Awesome App Name\" \\\n" +
                             "\t--destinationPath=\"your-new-project-root\" \\\n" +
-                            "\t--sourcePackage=\"io.afalabarce.template.kmm\" \\\n" +
-                            "\t--destinationPackage=\"io.github.afalabarce.awesomeapp\""
+                            "\t--sourcePackage=\"com.astrum.wallet.wise\" \\\n" +
+                            "\t--destinationPackage=\"com.astrum.wallet.wise.awesomeapp\""
                 )
                 println("-------------------------------")
             }

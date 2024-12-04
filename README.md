@@ -1,4 +1,4 @@
-# KMM Template (Android + iOS)
+# Wallet Wise (Android + iOS)
 
 ### [English Documentation](README.en.md)
 
