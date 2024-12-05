@@ -33,7 +33,7 @@ datastore-version = "1.1.1"
 constraint-layout-version = "0.4.0"
 kotlinx-serialization = "1.7.3"
 coil-version = "3.0.0-alpha06"
-lifecycle-viewmodel = "2.8.3"
+lifecycle-viewmodel = "2.8.4"
 touchlab-version = "2.0.5"
 compottie = "2.0.0-rc02"
 
